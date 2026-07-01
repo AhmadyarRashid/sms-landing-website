@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Reveal from "@/components/Reveal";
 
 // Reusable call-to-action band shown near the bottom of most pages.
 export default function CTASection({
@@ -8,7 +9,11 @@ export default function CTASection({
   href = "/contact",
 }) {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <Reveal
+      as="section"
+      variant="zoom"
+      className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8"
+    >
       <div className="relative overflow-hidden rounded-3xl bg-brand px-6 py-14 text-center shadow-xl sm:px-12">
         <div
           aria-hidden
@@ -30,6 +35,6 @@ export default function CTASection({
           </Link>
         </div>
       </div>
-    </section>
+    </Reveal>
   );
 }

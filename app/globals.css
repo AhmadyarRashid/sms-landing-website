@@ -45,5 +45,60 @@ body {
 }
 
 .animate-fade-up {
-  animation: fade-up 0.6s ease-out both;
+  animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Scroll-triggered reveal (paired with <Reveal>) */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-up {
+  transform: translateY(28px);
+}
+.reveal-left {
+  transform: translateX(-32px);
+}
+.reveal-right {
+  transform: translateX(32px);
+}
+.reveal-zoom {
+  transform: scale(0.94);
+}
+.reveal-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Gentle continuous float for hero art */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .animate-fade-up,
+  .animate-float {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
 }

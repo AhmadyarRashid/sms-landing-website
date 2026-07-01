@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { solutions } from "@/data/solutions";
 import CTASection from "@/components/CTASection";
+import Reveal from "@/components/Reveal";
 
 export const metadata = {
   title: "Smart Infrastructure, Security & Cloud",
@@ -108,7 +109,7 @@ export default function HomePage() {
               alt="Intelligent infrastructure and software development"
               width={640}
               height={560}
-              className="mx-auto h-auto w-full max-w-lg"
+              className="mx-auto h-auto w-full max-w-lg animate-float"
               priority
             />
           </div>
@@ -118,19 +119,23 @@ export default function HomePage() {
       {/* 2. Our Clients */}
       <section className="border-y border-gray-100 bg-white">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-          <h2 className="text-center text-sm font-semibold uppercase tracking-widest text-gray-400">
+          <Reveal
+            as="h2"
+            className="text-center text-sm font-semibold uppercase tracking-widest text-gray-400"
+          >
             Our Clients
-          </h2>
+          </Reveal>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
-            {clients.map((c) => (
-              <Image
-                key={c.src}
-                src={c.src}
-                alt={c.name}
-                width={130}
-                height={56}
-                className="h-12 w-auto object-contain grayscale transition hover:grayscale-0"
-              />
+            {clients.map((c, i) => (
+              <Reveal key={c.src} variant="zoom" delay={i * 80}>
+                <Image
+                  src={c.src}
+                  alt={c.name}
+                  width={130}
+                  height={56}
+                  className="h-12 w-auto object-contain grayscale transition duration-300 hover:scale-105 hover:grayscale-0"
+                />
+              </Reveal>
             ))}
           </div>
         </div>
@@ -138,7 +143,7 @@ export default function HomePage() {
 
       {/* 3. Delivering Intelligent Infrastructure */}
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
+        <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Delivering Intelligent Infrastructure
           </h2>
@@ -146,10 +151,10 @@ export default function HomePage() {
             One partner for smart, secure, and connected infrastructure — designed,
             integrated, and managed end to end.
           </p>
-        </div>
+        </Reveal>
         <div className="mt-14 grid gap-8 md:grid-cols-3">
-          {pillars.map((p) => (
-            <div key={p.title} className="text-center">
+          {pillars.map((p, i) => (
+            <Reveal key={p.title} delay={i * 120} className="text-center">
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-light">
                 <svg
                   className="h-8 w-8 text-brand"
@@ -165,7 +170,7 @@ export default function HomePage() {
               </div>
               <h3 className="mt-5 text-lg font-semibold text-gray-900">{p.title}</h3>
               <p className="mt-2 text-sm text-gray-600">{p.body}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -173,7 +178,7 @@ export default function HomePage() {
       {/* 4. Digitalization cornerstone */}
       <section className="bg-brand-light/40">
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8">
-          <div className="flex justify-center">
+          <Reveal variant="left" className="flex justify-center">
             <Image
               src="/images/Frame 35.svg"
               alt="Digital onboarding illustration"
@@ -181,8 +186,8 @@ export default function HomePage() {
               height={420}
               className="h-auto w-full max-w-sm"
             />
-          </div>
-          <div>
+          </Reveal>
+          <Reveal variant="right">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               At SMS Services, we believe digitalization is the cornerstone of every
               successful business.
@@ -194,17 +199,17 @@ export default function HomePage() {
             </p>
             <Link
               href="/about"
-              className="mt-8 inline-flex items-center gap-2 rounded-xl bg-brand px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-dark"
+              className="mt-8 inline-flex items-center gap-2 rounded-xl bg-brand px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-brand-dark hover:gap-3"
             >
               Learn More <span aria-hidden>→</span>
             </Link>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* 5. Stats — Helping our businesses reinvent itself */}
       <section className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8">
-        <div>
+        <Reveal variant="left">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Helping our businesses <span className="text-brand">reinvent itself</span>
           </h2>
@@ -213,10 +218,10 @@ export default function HomePage() {
             systems — transforming the way organizations connect and collaborate
             through technology.
           </p>
-        </div>
+        </Reveal>
         <dl className="grid grid-cols-2 gap-8">
-          {stats.map((s) => (
-            <div key={s.label} className="flex items-center gap-4">
+          {stats.map((s, i) => (
+            <Reveal key={s.label} variant="zoom" delay={i * 100} className="flex items-center gap-4">
               <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-light text-brand">
                 <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M10 2a4 4 0 100 8 4 4 0 000-8zM2 17a6 6 0 1112 0v1H2v-1z" />
@@ -226,7 +231,7 @@ export default function HomePage() {
                 <dd className="text-2xl font-extrabold text-gray-900">{s.value}</dd>
                 <dt className="text-sm text-gray-500">{s.label}</dt>
               </div>
-            </div>
+            </Reveal>
           ))}
         </dl>
       </section>
@@ -234,7 +239,7 @@ export default function HomePage() {
       {/* 6. Software & Digital Solutions */}
       <section className="bg-gray-50">
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8">
-          <div className="order-2 flex justify-center lg:order-1">
+          <Reveal variant="left" className="order-2 flex justify-center lg:order-1">
             <Image
               src="/images/pana.svg"
               alt="Software and digital solutions"
@@ -242,8 +247,8 @@ export default function HomePage() {
               height={420}
               className="h-auto w-full max-w-sm"
             />
-          </div>
-          <div className="order-1 lg:order-2">
+          </Reveal>
+          <Reveal variant="right" className="order-1 lg:order-2">
             <p className="text-sm font-semibold uppercase tracking-widest text-brand">
               What we build
             </p>
@@ -266,46 +271,47 @@ export default function HomePage() {
             </ul>
             <Link
               href="/solutions/erp-solutions"
-              className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-brand hover:text-brand-dark"
+              className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-brand transition-all hover:gap-3 hover:text-brand-dark"
             >
               Explore our solutions <span aria-hidden>→</span>
             </Link>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Services quick grid */}
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
+        <Reveal className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-brand">
             What we do
           </p>
           <h2 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             End-to-end smart solutions
           </h2>
-        </div>
+        </Reveal>
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {solutions.map((s) => (
-            <Link
-              key={s.slug}
-              href={`/solutions/${s.slug}`}
-              className="group flex flex-col rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-brand/30 hover:shadow-lg"
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-light">
-                <Image
-                  src={s.features[0].icon}
-                  alt=""
-                  width={28}
-                  height={28}
-                  className="h-7 w-7 object-contain"
-                />
-              </div>
-              <h3 className="mt-5 text-lg font-semibold text-gray-900 group-hover:text-brand">
-                {s.short}
-              </h3>
-              <p className="mt-2 flex-1 text-sm text-gray-600">{s.tagline}</p>
-              <span className="mt-4 text-sm font-semibold text-brand">Learn more →</span>
-            </Link>
+          {solutions.map((s, i) => (
+            <Reveal key={s.slug} delay={(i % 3) * 100} className="flex">
+              <Link
+                href={`/solutions/${s.slug}`}
+                className="group flex flex-1 flex-col rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-brand/30 hover:shadow-lg"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-light transition-transform duration-300 group-hover:scale-110">
+                  <Image
+                    src={s.features[0].icon}
+                    alt=""
+                    width={28}
+                    height={28}
+                    className="h-7 w-7 object-contain"
+                  />
+                </div>
+                <h3 className="mt-5 text-lg font-semibold text-gray-900 group-hover:text-brand">
+                  {s.short}
+                </h3>
+                <p className="mt-2 flex-1 text-sm text-gray-600">{s.tagline}</p>
+                <span className="mt-4 text-sm font-semibold text-brand">Learn more →</span>
+              </Link>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -313,7 +319,7 @@ export default function HomePage() {
       {/* 7. Defence Journal */}
       <section className="bg-gray-50">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
+          <Reveal className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               Defence Journal
             </h2>
@@ -321,15 +327,17 @@ export default function HomePage() {
               A flagship publication of the Pathfinder Group — insight and analysis on
               defence, strategy, and global affairs.
             </p>
-          </div>
+          </Reveal>
           <div className="mt-12 grid gap-8 sm:grid-cols-3">
-            {journal.map((j) => (
-              <a
+            {journal.map((j, i) => (
+              <Reveal
                 key={j.src}
+                delay={i * 120}
+                as="a"
                 href="https://www.defencejournal.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+                className="group overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg"
               >
                 <div className="relative aspect-[3/4] w-full">
                   <Image
@@ -340,7 +348,7 @@ export default function HomePage() {
                     sizes="(max-width: 640px) 100vw, 33vw"
                   />
                 </div>
-              </a>
+              </Reveal>
             ))}
           </div>
           <div className="mt-10 text-center">

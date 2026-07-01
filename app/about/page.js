@@ -1,6 +1,7 @@
 import Image from "next/image";
 import PageHeader from "@/components/PageHeader";
 import CTASection from "@/components/CTASection";
+import Reveal from "@/components/Reveal";
 
 export const metadata = {
   title: "About Us",
@@ -38,7 +39,7 @@ export default function AboutPage() {
 
       {/* Our story */}
       <section className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8">
-        <div>
+        <Reveal variant="left">
           <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">Our Story</h2>
           <p className="mt-5 text-gray-600">
             As a proud member of the Pathfinder Group, SMS Services was founded to meet
@@ -54,8 +55,8 @@ export default function AboutPage() {
             driven by a commitment to helping our clients navigate the complexities of
             the digital age with confidence and security.
           </p>
-        </div>
-        <div className="overflow-hidden rounded-3xl shadow-lg">
+        </Reveal>
+        <Reveal variant="right" className="overflow-hidden rounded-3xl shadow-lg">
           <Image
             src="/images/Smart Safety and Security Solutions.png"
             alt="SMS Services infrastructure and solutions"
@@ -63,28 +64,28 @@ export default function AboutPage() {
             height={480}
             className="h-full w-full object-cover"
           />
-        </div>
+        </Reveal>
       </section>
 
       {/* Mission & Vision */}
       <section className="bg-brand-light/50">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8">
-          <div className="rounded-3xl bg-white p-8 shadow-sm">
+          <Reveal variant="left" className="rounded-3xl bg-white p-8 shadow-sm">
             <h3 className="text-xl font-bold text-brand">Our Mission</h3>
             <p className="mt-4 text-gray-600">
               To be the region's leading provider of intelligent communication systems —
               transforming the way organizations connect and collaborate through
               technology.
             </p>
-          </div>
-          <div className="rounded-3xl bg-white p-8 shadow-sm">
+          </Reveal>
+          <Reveal variant="right" delay={100} className="rounded-3xl bg-white p-8 shadow-sm">
             <h3 className="text-xl font-bold text-brand">Our Vision</h3>
             <p className="mt-4 text-gray-600">
               To build a future where secure and smart technology is the backbone of
               every successful enterprise — fostering growth, efficiency, and
               connectivity for all.
             </p>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -97,14 +98,15 @@ export default function AboutPage() {
           </p>
         </div>
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {values.map((v) => (
-            <div
+          {values.map((v, i) => (
+            <Reveal
               key={v.title}
-              className="rounded-2xl border border-gray-100 bg-white p-6 text-center shadow-sm"
+              delay={i * 100}
+              className="rounded-2xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg"
             >
               <h3 className="text-lg font-semibold text-brand">{v.title}</h3>
               <p className="mt-3 text-sm text-gray-600">{v.body}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>

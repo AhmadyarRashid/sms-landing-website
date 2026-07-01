@@ -1,3 +1,5 @@
+import Reveal from "@/components/Reveal";
+
 // Consistent hero band used at the top of interior pages.
 export default function PageHeader({ title, subtitle, eyebrow }) {
   return (
@@ -8,17 +10,28 @@ export default function PageHeader({ title, subtitle, eyebrow }) {
       />
       <div className="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:py-20">
         {eyebrow && (
-          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-brand">
+          <Reveal
+            as="p"
+            className="mb-3 text-sm font-semibold uppercase tracking-widest text-brand"
+          >
             {eyebrow}
-          </p>
+          </Reveal>
         )}
-        <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
+        <Reveal
+          as="h1"
+          delay={80}
+          className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl"
+        >
           {title}
-        </h1>
+        </Reveal>
         {subtitle && (
-          <p className="mx-auto mt-4 max-w-2xl text-base text-gray-600 sm:text-lg">
+          <Reveal
+            as="p"
+            delay={160}
+            className="mx-auto mt-4 max-w-2xl text-base text-gray-600 sm:text-lg"
+          >
             {subtitle}
-          </p>
+          </Reveal>
         )}
       </div>
     </section>
