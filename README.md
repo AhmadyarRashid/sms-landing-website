@@ -52,6 +52,24 @@ wired to a backend. To actually send messages, add a Next.js Route Handler
 (`app/api/contact/route.js`) or connect an email service (Resend, Formspree, etc.)
 and post the form data to it.
 
+## Maintenance mode
+
+The whole site is currently gated behind a full-screen **maintenance page**
+(`app/maintenance/page.js`). While maintenance mode is ON, `middleware.js`
+redirects every route to `/maintenance`.
+
+**To bring the full site back online**, do either:
+
+- Open `middleware.js` and change `MAINTENANCE_MODE` — set the env var
+  `MAINTENANCE_MODE=false` (e.g. in `.env.local` or your host's settings), **or**
+- Hard-disable it by editing the first line's logic in `middleware.js`.
+
+Then redeploy (or restart `npm run dev`). To turn maintenance back ON, remove the
+env var (it defaults to ON) or set `MAINTENANCE_MODE=true`.
+
+> Static assets (`/images`, `/_next`) are excluded from the redirect so the
+> maintenance page's logo and styles load normally.
+
 ## Pages / routes
 
 `/` · `/about` · `/services` · `/solutions/<slug>` · `/community` · `/media` ·
