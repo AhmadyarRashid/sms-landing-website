@@ -1,11 +1,12 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+// Self-hosted so the production build needs no network access to Google Fonts.
+const inter = localFont({
+  src: "./fonts/InterVariable.woff2",
+  weight: "100 900",
   variable: "--font-inter",
   display: "swap",
 });
