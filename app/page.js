@@ -44,13 +44,6 @@ const pillars = [
   },
 ];
 
-const stats = [
-  { value: "2,245,341", label: "Members" },
-  { value: "46,328", label: "Employees" },
-  { value: "828,867", label: "Clients" },
-  { value: "1,926,436", label: "Payments" },
-];
-
 const softwareItems = [
   "Custom software development tailored to your workflows",
   "Web & mobile application design and development",
@@ -205,35 +198,6 @@ export default function HomePage() {
             </Link>
           </Reveal>
         </div>
-      </section>
-
-      {/* 5. Stats — Helping our businesses reinvent itself */}
-      <section className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8">
-        <Reveal variant="left">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Helping our businesses <span className="text-brand">reinvent itself</span>
-          </h2>
-          <p className="mt-4 max-w-md text-gray-600">
-            To be the region&apos;s leading provider of intelligent communication
-            systems — transforming the way organizations connect and collaborate
-            through technology.
-          </p>
-        </Reveal>
-        <dl className="grid grid-cols-2 gap-8">
-          {stats.map((s, i) => (
-            <Reveal key={s.label} variant="zoom" delay={i * 100} className="flex items-center gap-4">
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-light text-brand">
-                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M10 2a4 4 0 100 8 4 4 0 000-8zM2 17a6 6 0 1112 0v1H2v-1z" />
-                </svg>
-              </span>
-              <div>
-                <dd className="text-2xl font-extrabold text-gray-900">{s.value}</dd>
-                <dt className="text-sm text-gray-500">{s.label}</dt>
-              </div>
-            </Reveal>
-          ))}
-        </dl>
       </section>
 
       {/* 6. Software & Digital Solutions */}
