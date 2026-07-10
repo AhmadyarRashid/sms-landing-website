@@ -1,15 +1,28 @@
 @import "tailwindcss";
 
 @theme {
+  /* Brand */
   --color-brand: #198754;
   --color-brand-dark: #146c43;
   --color-brand-light: #e8f5ee;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Futuristic accents */
+  --color-accent: #10b981; /* emerald */
+  --color-accent-2: #2dd4bf; /* teal */
+  --color-accent-3: #22d3ee; /* cyan pop */
+
+  /* Deep "ink" surfaces for cinematic dark sections */
+  --color-ink: #04120c;
+  --color-ink-soft: #071c12;
+  --color-ink-line: rgba(255, 255, 255, 0.08);
+
+  --font-sans: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space), "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
   --background: #ffffff;
-  --foreground: #212529;
+  --foreground: #0d1b14;
 }
 
 html {
@@ -21,6 +34,103 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Headings use the futuristic display face; body stays on Inter. */
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  text-wrap: balance; /* avoid lonely words on the last line */
+}
+h4,
+h5 {
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty; /* avoids typographic orphans */
+}
+
+/* Accessible, on-brand focus ring for keyboard users */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Smooth cross-page morph on browsers that support it */
+@view-transition {
+  navigation: auto;
+}
+
+/* Skip-to-content link (visually hidden until focused) */
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: -3rem;
+  z-index: 100;
+  border-radius: 0.5rem;
+  background: var(--color-brand);
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Tabular figures keep stats from jittering as they count */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Layered, soft "premium" shadow */
+.shadow-premium {
+  box-shadow:
+    0 1px 2px rgba(16, 24, 40, 0.04),
+    0 4px 10px -2px rgba(16, 24, 40, 0.06),
+    0 24px 48px -12px rgba(16, 24, 40, 0.12);
+}
+
+/* Fine film grain overlaid on the whole page for richness */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection {
+  background: rgba(16, 185, 129, 0.25);
+  color: #04120c;
+}
+
+/* Refined scrollbar */
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #198754, #10b981);
+  border-radius: 999px;
+  border: 3px solid #ffffff;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #146c43, #0e9f6e);
 }
 
 /* Hide scrollbars on horizontal scroll rows */
@@ -32,72 +142,372 @@ body {
   scrollbar-width: none;
 }
 
-/* Simple reveal-on-load animation */
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* ============================================================
+   Gradient text
+   ============================================================ */
+.text-gradient {
+  background: linear-gradient(120deg, #198754 0%, #10b981 45%, #2dd4bf 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.text-gradient-light {
+  background: linear-gradient(120deg, #ffffff 0%, #a7f3d0 60%, #5eead4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
+/* Animated shine sweeping across a headline */
+@keyframes text-shine {
+  to {
+    background-position: 200% center;
+  }
+}
+.text-shine {
+  background: linear-gradient(
+    100deg,
+    #198754 0%,
+    #10b981 20%,
+    #5eead4 40%,
+    #10b981 60%,
+    #198754 80%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: text-shine 6s linear infinite;
+}
+
+/* ============================================================
+   Backgrounds — grid, aurora, noise
+   ============================================================ */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(16, 185, 129, 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 185, 129, 0.09) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+.bg-grid-dark {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+/* Fade a grid out toward the edges */
+.mask-fade {
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 40%, transparent 100%);
+}
+
+/* Floating aurora blobs */
+@keyframes aurora-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(6%, -8%) scale(1.15); }
+  66% { transform: translate(-5%, 6%) scale(0.92); }
+}
+@keyframes aurora-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-7%, 5%) scale(1.1); }
+  66% { transform: translate(5%, -6%) scale(0.95); }
+}
+.aurora-blob {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(64px);
+  opacity: 0.55;
+  will-change: transform;
+}
+.aurora-blob-1 {
+  animation: aurora-1 18s ease-in-out infinite;
+}
+.aurora-blob-2 {
+  animation: aurora-2 22s ease-in-out infinite;
+}
+
+/* ============================================================
+   Glow / glass helpers
+   ============================================================ */
+.glass {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+}
+.glass-dark {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.glow-ring {
+  box-shadow:
+    0 0 0 1px rgba(16, 185, 129, 0.18),
+    0 18px 50px -20px rgba(16, 185, 129, 0.5);
+}
+
+/* Gradient border card (mask trick) */
+.gradient-border {
+  position: relative;
+}
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.6), rgba(45, 212, 191, 0.15), transparent 60%);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Spotlight card — radial glow follows the cursor (--mx/--my set in JS) */
+.spotlight {
+  position: relative;
+  overflow: hidden;
+}
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    340px circle at var(--mx, 50%) var(--my, 0%),
+    rgba(16, 185, 129, 0.16),
+    transparent 62%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+.spotlight:hover::before {
+  opacity: 1;
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255, 255, 255, 0.45),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+}
+.btn-shine:hover::after {
+  left: 130%;
+}
+
+/* ============================================================
+   Marquee (infinite horizontal scroll)
+   ============================================================ */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+.group\/marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* ============================================================
+   Entrance animations
+   ============================================================ */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 .animate-fade-up {
-  animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* Scroll-triggered reveal (paired with <Reveal>) */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(30px);
   transition:
-    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
-.reveal-up {
-  transform: translateY(28px);
-}
-.reveal-left {
-  transform: translateX(-32px);
-}
-.reveal-right {
-  transform: translateX(32px);
-}
-.reveal-zoom {
-  transform: scale(0.94);
-}
+.reveal-up { transform: translateY(30px); }
+.reveal-left { transform: translateX(-36px); }
+.reveal-right { transform: translateX(36px); }
+.reveal-zoom { transform: scale(0.94); }
+.reveal-blur { transform: translateY(24px); filter: blur(12px); }
 .reveal-visible {
   opacity: 1;
   transform: none;
+  filter: none;
 }
 
-/* Gentle continuous float for hero art */
+/* Gentle continuous float */
 @keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-12px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
 }
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+.animate-float-slow {
+  animation: float-slow 9s ease-in-out infinite;
+}
 
-/* Respect users who prefer less motion */
+/* Slow spin for orbital rings */
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 28s linear infinite;
+}
+
+/* Pulsing glow */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+/* Animated "data flowing" dot for the live-pipeline demo */
+@keyframes flow-track {
+  0% { left: 6%; opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { left: 94%; opacity: 0; }
+}
+.flow-dot {
+  animation: flow-track 3s linear infinite;
+}
+
+/* Sequential node "processing" pulse */
+@keyframes node-active {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+  50% { transform: scale(1.08); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0.12); }
+}
+.node-active {
+  animation: node-active 3s ease-in-out infinite;
+}
+
+/* ============================================================
+   Smart-space automation demo (person walks in → space reacts)
+   All animations share a 14s loop so rooms stay in sync with the avatar.
+   ============================================================ */
+@keyframes ss-avatar {
+  0%   { left: 7%;  top: 64%; }
+  12%  { left: 21%; top: 58%; }
+  20%  { left: 35%; top: 46%; }
+  38%  { left: 35%; top: 46%; }
+  46%  { left: 52%; top: 52%; }
+  56%  { left: 70%; top: 46%; }
+  74%  { left: 70%; top: 46%; }
+  84%  { left: 21%; top: 60%; }
+  100% { left: 7%;  top: 64%; }
+}
+.ss-avatar { animation: ss-avatar 14s ease-in-out infinite; }
+
+/* Room 1 occupied ~18–44% ; Room 2 occupied ~54–76% */
+@keyframes ss-room1 { 0%,18% { opacity: 0; } 23%,44% { opacity: 1; } 49%,100% { opacity: 0; } }
+@keyframes ss-room2 { 0%,54% { opacity: 0; } 59%,76% { opacity: 1; } 81%,100% { opacity: 0; } }
+.ss-room1-glow { animation: ss-room1 14s ease-in-out infinite; }
+.ss-room2-glow { animation: ss-room2 14s ease-in-out infinite; }
+
+/* Device icons switch grey → emerald while their room is occupied */
+@keyframes ss-room1-color { 0%,18% { color: #9ca3af; } 23%,44% { color: #10b981; } 49%,100% { color: #9ca3af; } }
+@keyframes ss-room2-color { 0%,54% { color: #9ca3af; } 59%,76% { color: #10b981; } 81%,100% { color: #9ca3af; } }
+.ss-room1-dev { animation: ss-room1-color 14s ease-in-out infinite; }
+.ss-room2-dev { animation: ss-room2-color 14s ease-in-out infinite; }
+
+/* Gate: locked (red) by default, unlocked (green) while occupant is inside */
+@keyframes ss-gate-lock { 0%,9% { opacity: 1; } 13%,86% { opacity: 0; } 90%,100% { opacity: 1; } }
+@keyframes ss-gate-unlock { 0%,9% { opacity: 0; } 13%,86% { opacity: 1; } 90%,100% { opacity: 0; } }
+.ss-gate-lock { animation: ss-gate-lock 14s ease-in-out infinite; }
+.ss-gate-unlock { animation: ss-gate-unlock 14s ease-in-out infinite; }
+
+/* Rule rows light up as each rule fires */
+@keyframes ss-rule1 { 0%,8% { opacity: 0.35; } 12%,22% { opacity: 1; } 26%,100% { opacity: 0.35; } }
+@keyframes ss-rule2 { 0%,20% { opacity: 0.35; } 24%,76% { opacity: 1; } 80%,100% { opacity: 0.35; } }
+@keyframes ss-rule3 { 0%,82% { opacity: 0.35; } 86%,98% { opacity: 1; } 100% { opacity: 0.35; } }
+.ss-rule-1 { animation: ss-rule1 14s ease-in-out infinite; }
+.ss-rule-2 { animation: ss-rule2 14s ease-in-out infinite; }
+.ss-rule-3 { animation: ss-rule3 14s ease-in-out infinite; }
+
+/* Detection ring pulsing around the avatar */
+@keyframes ss-ping { 0% { transform: scale(0.6); opacity: 0.6; } 100% { transform: scale(2.2); opacity: 0; } }
+.ss-ping { animation: ss-ping 2s ease-out infinite; }
+
+/* Top scroll-progress bar */
+.scroll-progress {
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, #198754, #10b981, #2dd4bf);
+}
+
+/* ============================================================
+   Motion preferences
+   ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
   .reveal,
   .animate-fade-up,
-  .animate-float {
-    opacity: 1 !important;
-    transform: none !important;
+  .animate-float,
+  .animate-float-slow,
+  .animate-spin-slow,
+  .animate-pulse-glow,
+  .aurora-blob-1,
+  .aurora-blob-2,
+  .text-shine,
+  .marquee-track,
+  .flow-dot,
+  .node-active,
+  .ss-avatar,
+  .ss-room1-glow,
+  .ss-room2-glow,
+  .ss-room1-dev,
+  .ss-room2-dev,
+  .ss-gate-lock,
+  .ss-gate-unlock,
+  .ss-rule-1,
+  .ss-rule-2,
+  .ss-rule-3,
+  .ss-ping {
     animation: none !important;
     transition: none !important;
   }

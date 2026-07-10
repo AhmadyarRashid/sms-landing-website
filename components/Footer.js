@@ -10,7 +10,7 @@ function SocialIcon({ href, label, children }) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-gray-600 shadow-sm transition-colors hover:bg-brand hover:text-white"
+      className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-300 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/40 hover:bg-brand hover:text-white"
     >
       {children}
     </a>
@@ -19,8 +19,15 @@ function SocialIcon({ href, label, children }) {
 
 export default function Footer() {
   return (
-    <footer className="mt-20 bg-gradient-to-r from-[#f6f6f6] to-[#ffe6e6]">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-4 lg:px-8">
+    <footer className="relative mt-24 overflow-hidden bg-ink text-gray-300">
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-grid-dark mask-fade opacity-50" />
+      <div
+        aria-hidden
+        className="aurora-blob aurora-blob-1 -top-24 left-1/4 h-72 w-72 opacity-40"
+        style={{ background: "radial-gradient(circle, rgba(16,185,129,0.5), transparent 70%)" }}
+      />
+
+      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-4 lg:px-8">
         {/* Brand */}
         <div className="lg:col-span-1">
           <a href={site.parentGroup} target="_blank" rel="noopener noreferrer">
@@ -29,64 +36,13 @@ export default function Footer() {
               alt={site.name}
               width={180}
               height={60}
-              className="h-14 w-auto"
+              className="h-14 w-auto brightness-0 invert"
             />
           </a>
-          <p className="mt-4 max-w-xs text-sm text-gray-600">
+          <p className="mt-4 max-w-xs text-sm text-gray-400">
             {site.tagline} A proud member of the Pathfinder Group.
           </p>
-        </div>
-
-        {/* Explore */}
-        <div>
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-900">
-            Explore
-          </h3>
-          <ul className="mt-4 space-y-2 text-sm">
-            <li><Link href="/about" className="text-gray-600 hover:text-brand">About</Link></li>
-            <li><Link href="/gallery" className="text-gray-600 hover:text-brand">Gallery</Link></li>
-            <li><Link href="/blog" className="text-gray-600 hover:text-brand">Blog</Link></li>
-            <li><Link href="/video" className="text-gray-600 hover:text-brand">Videos</Link></li>
-            <li><Link href="/contact" className="text-gray-600 hover:text-brand">Contact</Link></li>
-          </ul>
-        </div>
-
-        {/* Services */}
-        <div>
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-900">
-            Services
-          </h3>
-          <ul className="mt-4 space-y-2 text-sm">
-            {solutions.slice(0, 5).map((s) => (
-              <li key={s.slug}>
-                <Link href={`/solutions/${s.slug}`} className="text-gray-600 hover:text-brand">
-                  {s.short}
-                </Link>
-              </li>
-            ))}
-            <li><Link href="/services" className="font-medium text-brand hover:text-brand-dark">All services →</Link></li>
-          </ul>
-        </div>
-
-        {/* Contact */}
-        <div>
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-900">
-            Get in Touch
-          </h3>
-          <address className="mt-4 space-y-2 text-sm not-italic text-gray-600">
-            <p>{site.contact.address}</p>
-            <p>
-              <a href={site.contact.phoneHref} className="hover:text-brand">
-                {site.contact.phone}
-              </a>
-            </p>
-            <p>
-              <a href={`mailto:${site.contact.email}`} className="hover:text-brand">
-                {site.contact.email}
-              </a>
-            </p>
-          </address>
-          <div className="mt-4 flex gap-3">
+          <div className="mt-6 flex gap-3">
             <SocialIcon href={site.social.facebook} label="Facebook">
               <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.5 9.9v-7H8v-2.9h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6v1.9h2.7l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg>
             </SocialIcon>
@@ -101,10 +57,60 @@ export default function Footer() {
             </SocialIcon>
           </div>
         </div>
+
+        {/* Explore */}
+        <div>
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-white">
+            Explore
+          </h3>
+          <ul className="mt-4 space-y-2.5 text-sm">
+            <li><Link href="/about" className="text-gray-400 transition-colors hover:text-accent-2">About</Link></li>
+            <li><Link href="/gallery" className="text-gray-400 transition-colors hover:text-accent-2">Gallery</Link></li>
+            <li><Link href="/video" className="text-gray-400 transition-colors hover:text-accent-2">Videos</Link></li>
+            <li><Link href="/contact" className="text-gray-400 transition-colors hover:text-accent-2">Contact</Link></li>
+          </ul>
+        </div>
+
+        {/* Services */}
+        <div>
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-white">
+            Services
+          </h3>
+          <ul className="mt-4 space-y-2.5 text-sm">
+            {solutions.slice(0, 5).map((s) => (
+              <li key={s.slug}>
+                <Link href={`/solutions/${s.slug}`} className="text-gray-400 transition-colors hover:text-accent-2">
+                  {s.short}
+                </Link>
+              </li>
+            ))}
+            <li><Link href="/services" className="font-medium text-accent transition-colors hover:text-accent-2">All services →</Link></li>
+          </ul>
+        </div>
+
+        {/* Contact */}
+        <div>
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-white">
+            Get in Touch
+          </h3>
+          <address className="mt-4 space-y-2.5 text-sm not-italic text-gray-400">
+            <p>{site.contact.address}</p>
+            <p>
+              <a href={site.contact.phoneHref} className="transition-colors hover:text-accent-2">
+                {site.contact.phone}
+              </a>
+            </p>
+            <p>
+              <a href={`mailto:${site.contact.email}`} className="transition-colors hover:text-accent-2">
+                {site.contact.email}
+              </a>
+            </p>
+          </address>
+        </div>
       </div>
 
-      <div className="border-t border-black/5">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-5 text-xs text-gray-500 sm:flex-row sm:px-6 lg:px-8">
+      <div className="relative border-t border-white/10">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-6 text-xs text-gray-500 sm:flex-row sm:px-6 lg:px-8">
           <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
           <p>A member of the Pathfinder Group.</p>
         </div>

@@ -1,25 +1,4 @@
-// Blog posts, videos, and gallery images shared by the media-related pages.
-
-export const posts = [
-  {
-    image: "/images/cc1.jpeg",
-    title: "The Future of Smart Cities with IoT",
-    excerpt:
-      "Explore how IoT is revolutionizing urban infrastructure, from traffic management to public safety.",
-  },
-  {
-    image: "/images/cc2.jpeg",
-    title: "5 Key Strategies for Effective Cybersecurity",
-    excerpt:
-      "In an era of increasing digital threats, protecting your assets is paramount. Here are five key strategies.",
-  },
-  {
-    image: "/images/cc3.jpeg",
-    title: "How Data Analytics Drives Business Growth",
-    excerpt:
-      "Turn your data into a strategic asset. Learn how business intelligence can unlock new opportunities.",
-  },
-];
+// Videos and gallery images shared by the media-related pages.
 
 export const videos = [
   { id: "6bhjeGDkkKo", title: "Company Overview" },

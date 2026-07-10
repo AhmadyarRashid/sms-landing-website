@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 
-// Reusable call-to-action band shown near the bottom of most pages.
+// Reusable, futuristic call-to-action band shown near the bottom of most pages.
 export default function CTASection({
   heading = "Ready to get started?",
   text = "Let's discuss how SMS Services can help your business.",
@@ -14,21 +14,27 @@ export default function CTASection({
       variant="zoom"
       className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8"
     >
-      <div className="relative overflow-hidden rounded-3xl bg-brand px-6 py-14 text-center shadow-xl sm:px-12">
+      <div className="relative overflow-hidden rounded-[2rem] bg-ink px-6 py-16 text-center shadow-2xl sm:px-12">
+        {/* Glow field */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-grid-dark mask-fade opacity-60" />
         <div
           aria-hidden
-          className="pointer-events-none absolute -left-16 -top-16 h-64 w-64 rounded-full bg-white/10"
+          className="aurora-blob aurora-blob-1 -left-16 -top-20 h-72 w-72"
+          style={{ background: "radial-gradient(circle, rgba(16,185,129,0.6), transparent 70%)" }}
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute -bottom-20 -right-10 h-72 w-72 rounded-full bg-black/10"
+          className="aurora-blob aurora-blob-2 -bottom-24 -right-10 h-80 w-80"
+          style={{ background: "radial-gradient(circle, rgba(45,212,191,0.5), transparent 70%)" }}
         />
         <div className="relative">
-          <h2 className="text-2xl font-bold text-white sm:text-3xl">{heading}</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-brand-light/95">{text}</p>
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            {heading}
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-emerald-100/80">{text}</p>
           <Link
             href={href}
-            className="mt-8 inline-flex items-center gap-2 rounded-xl bg-white px-7 py-3 text-sm font-semibold text-brand-dark shadow-sm transition-transform hover:scale-[1.03]"
+            className="btn-shine mt-9 inline-flex items-center gap-2 rounded-xl bg-white px-8 py-3.5 text-sm font-semibold text-brand-dark shadow-lg transition-transform duration-300 hover:scale-[1.04]"
           >
             {buttonLabel}
             <span aria-hidden>→</span>

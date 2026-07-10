@@ -1,5 +1,4 @@
 import PageHeader from "@/components/PageHeader";
-import CTASection from "@/components/CTASection";
 import { site } from "@/data/site";
 import { videos } from "@/data/content";
 
@@ -49,8 +48,6 @@ export default function VideoPage() {
           </a>
         </div>
       </section>
-
-      <CTASection />
     </>
   );
 }

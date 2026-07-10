@@ -8,7 +8,7 @@ export const solutions = [
     short: "Smart Safety & Security",
     tagline:
       "Empowering safer spaces through intelligent surveillance, real-time monitoring, and automated response systems — integrating IoT, AI, and analytics for proactive protection.",
-    heroImage: "/images/Smart Safety and Security Solutions.png",
+    heroImage: "/images/smart-safety-security.webp",
     introHeading: "Intelligence that Protects — Security Built for a Smarter World",
     intro:
       "At SMS Services, our Smart Safety & Security Solutions redefine how organizations protect their people, assets, and operations. By combining IoT connectivity, AI-powered analytics, and real-time monitoring, we deliver an integrated ecosystem that thinks, acts, and responds intelligently. From proactive threat detection to coordinated emergency response, our systems ensure continuous situational awareness, faster decision-making, and unmatched reliability — adaptive, predictive, and always alert.",
@@ -40,7 +40,7 @@ export const solutions = [
     short: "Smart Building Management",
     tagline:
       "Centralized, intelligent control of HVAC, lighting, power, and safety systems for smarter, more sustainable buildings.",
-    heroImage: "/images/Smart Building Management Systems.svg",
+    heroImage: "/images/smart-bms.webp",
     introHeading: "Intelligent Control. Efficient Energy. Smarter Buildings",
     intro:
       "At SMS Services, our Smart Building Management Systems (BMS) empower organizations to manage facilities with precision, intelligence, and sustainability. Through seamless integration of HVAC, lighting, power, and safety systems, we enable centralized control, data-driven decisions, and optimal energy performance. By combining automation with real-time monitoring, our BMS solutions enhance occupant comfort, reduce operational costs, and ensure safer, smarter spaces across commercial and industrial environments.",
@@ -72,7 +72,7 @@ export const solutions = [
     short: "Smart Manufacturing",
     tagline:
       "Bringing IoT, AI-driven analytics, and real-time visibility to every stage of production for predictive, optimized performance.",
-    heroImage: "/images/smart manufacturing solutions.svg",
+    heroImage: "/images/smart-manufacturing.webp",
     introHeading: "Driving Intelligent Manufacturing — Smarter, Faster, Predictive",
     intro:
       "At SMS Services, our Smart Manufacturing Solutions bring intelligence and automation to every stage of production. By integrating IoT sensors, AI-driven analytics, and real-time visibility, we help industries move from reactive operations to predictive and optimized performance. From anticipating equipment failures to improving supply-chain efficiency, our solutions empower manufacturers to minimize downtime, reduce costs, and achieve operational excellence — a seamless, data-driven production environment built for the future of industry.",
@@ -104,7 +104,7 @@ export const solutions = [
     short: "Smart Agriculture",
     tagline:
       "Empowering smarter farming through data, devices, and intelligence — IoT, AI, GIS, and remote sensing for precision agriculture.",
-    heroImage: "/images/Smart Agriculture Solutions.svg",
+    heroImage: "/images/smart-agriculture.webp",
     introHeading: "Empowering Smarter Farming Through Data, Devices and Intelligence",
     intro:
       "At SMS Services, our Smart Agriculture Solutions combine the power of IoT, AI, GIS, and remote sensing to help farmers make smarter, data-driven decisions. We bring innovation to the field — enabling real-time monitoring, predictive insights, and efficient resource management. By integrating connected devices, analytics, and geospatial intelligence, we help transform traditional farming into sustainable, precise, and high-performing agriculture, ensuring greater yield, reduced waste, and improved profitability.",
@@ -136,7 +136,7 @@ export const solutions = [
     short: "Cybersecurity Solutions",
     tagline:
       "Securing the digital future with intelligent defense and continuous protection across networks, endpoints, and data systems.",
-    heroImage: "/images/Comprehensive Cybersecurity Solutions.svg",
+    heroImage: "/images/cybersecurity-solutions.webp",
     introHeading: "Securing the Digital Future — Intelligent Defense, Continuous Protection",
     intro:
       "At SMS Services, our Comprehensive Cybersecurity Solutions safeguard organizations against ever-evolving digital threats. Combining advanced analytics, AI-driven defense, and proactive monitoring, we deliver complete visibility and control across networks, endpoints, and data systems. From real-time threat detection to vulnerability management and incident response, our cybersecurity framework ensures business continuity, compliance, and resilience — helping enterprises build trusted digital environments that are secure, intelligent, and always vigilant.",
@@ -163,7 +163,7 @@ export const solutions = [
     short: "Retail Intelligence",
     tagline:
       "Transforming retail with data — smarter insights and stronger customer connections through advanced analytics and AI.",
-    heroImage: "/images/Retail and customer Insights.svg",
+    heroImage: "/images/retail-intelligence.webp",
     introHeading: "Transforming Retail with Data — Smarter Insights, Stronger Connections",
     intro:
       "In today's data-driven marketplace, Retail Intelligence and Customer Insights empower businesses to understand, engage, and retain customers like never before. By integrating advanced analytics, AI, and behavioral modeling, we help retailers decode purchasing patterns, predict future demand, and create more meaningful customer experiences. From data collection to actionable insights, SMS Services enables smarter decision-making — enhancing marketing precision, improving sales performance, and strengthening customer loyalty across every channel.",
@@ -195,7 +195,7 @@ export const solutions = [
     short: "ERP & Business Solutions",
     tagline:
       "Integrating intelligence — empowering businesses to work smarter with tailored, scalable ERP systems.",
-    heroImage: "/images/Integrated ERP Solutions.svg",
+    heroImage: "/images/erp-solutions.webp",
     introHeading: "Integrating Intelligence — Empowering Businesses to Work Smarter",
     intro:
       "Our ERP & Customized Business Solutions are designed to unify and optimize business operations through intelligent automation and seamless integration. From finance and HR to supply chain and customer management, SMS Services builds tailored ERP systems that streamline workflows, improve visibility, and drive productivity across the enterprise. With scalable architectures and data-driven insights, our ERP solutions adapt to each organization's unique goals — enabling faster decision-making, cost savings, and improved operational control.",
@@ -223,6 +223,186 @@ export const solutions = [
   },
 ];
 
+// Per-solution "impact" media: a video (YouTube id — swap for the real clip)
+// and real-world use cases framed as problem → outcome, so visitors feel how
+// each system solves their day-to-day pain.
+export const solutionMedia = {
+  "smart-safety-security": {
+    video: "kkBVJXe9Jto",
+    videoTitle: "Smart Safety & Security in action",
+    demo: "space",
+    useCases: [
+      {
+        title: "Perimeter & intrusion",
+        problem: "After-hours break-ins go unnoticed until the next morning.",
+        result: "AI cameras and IoT sensors detect and alert security the instant something moves.",
+        metric: "Instant alerts",
+      },
+      {
+        title: "Emergency response",
+        problem: "Manual phone calls waste critical minutes during an incident.",
+        result: "Automated alerts coordinate a command-center response in seconds.",
+        metric: "Faster response",
+      },
+      {
+        title: "Access & accountability",
+        problem: "No clear visibility into who is where across large sites.",
+        result: "Real-time access logs and analytics keep every zone accountable.",
+        metric: "24/7 awareness",
+      },
+    ],
+  },
+  "smart-bms": {
+    video: "6bhjeGDkkKo",
+    videoTitle: "Smarter, greener buildings",
+    demo: "space",
+    useCases: [
+      {
+        title: "Energy waste",
+        problem: "Lights and HVAC run in empty rooms all night long.",
+        result: "Occupancy-aware automation tunes every system in real time.",
+        metric: "−30% energy",
+      },
+      {
+        title: "Comfort complaints",
+        problem: "Hot and cold spots frustrate occupants every day.",
+        result: "Centralized climate control balances comfort across every zone.",
+        metric: "Consistent comfort",
+      },
+      {
+        title: "Reactive maintenance",
+        problem: "Equipment fails without warning and disrupts operations.",
+        result: "Sensor data flags issues before they turn into failures.",
+        metric: "Fewer breakdowns",
+      },
+    ],
+  },
+  "smart-manufacturing": {
+    video: "v0_MC4TwdA0",
+    videoTitle: "Predictive, optimized production",
+    useCases: [
+      {
+        title: "Unplanned downtime",
+        problem: "A sudden machine failure halts the entire line.",
+        result: "Predictive analytics warn you days before a breakdown.",
+        metric: "−45% downtime",
+      },
+      {
+        title: "Quality drift",
+        problem: "Defects only surface after a batch has shipped.",
+        result: "Real-time monitoring catches deviations right on the line.",
+        metric: "Higher yield",
+      },
+      {
+        title: "Blind supply chain",
+        problem: "No live view of inventory, throughput, or bottlenecks.",
+        result: "Connected dashboards track every stage in real time.",
+        metric: "Full visibility",
+      },
+    ],
+  },
+  "smart-agriculture": {
+    video: "kkBVJXe9Jto",
+    videoTitle: "Precision farming with data",
+    useCases: [
+      {
+        title: "Water & input waste",
+        problem: "Guesswork irrigation wastes water and fertilizer.",
+        result: "Soil sensors and AI apply the exact amount each field needs.",
+        metric: "Less waste",
+      },
+      {
+        title: "Crop threats",
+        problem: "Pests and crop stress spread before anyone notices.",
+        result: "Remote sensing and GIS flag problem zones early.",
+        metric: "Protected yield",
+      },
+      {
+        title: "Livestock health",
+        problem: "Sick or distressed animals are spotted too late.",
+        result: "Wearable IoT monitors health and alerts on any anomaly.",
+        metric: "Proactive care",
+      },
+    ],
+  },
+  "cybersecurity-solutions": {
+    video: "Rh0w2N3rxOg",
+    videoTitle: "Intelligent, continuous defense",
+    useCases: [
+      {
+        title: "Silent breaches",
+        problem: "Attacks go undetected for days or even weeks.",
+        result: "A 24/7 SOC detects and contains threats fast.",
+        metric: "24/7 defense",
+      },
+      {
+        title: "Unpatched systems",
+        problem: "Known vulnerabilities stay open to attackers.",
+        result: "Automated vulnerability management keeps systems hardened.",
+        metric: "Fewer gaps",
+      },
+      {
+        title: "Compliance risk",
+        problem: "Audits are stressful, manual, and reactive.",
+        result: "Continuous monitoring keeps you audit-ready year round.",
+        metric: "Always compliant",
+      },
+    ],
+  },
+  "retail-intelligence": {
+    video: "kkBVJXe9Jto",
+    videoTitle: "Turning data into loyalty",
+    useCases: [
+      {
+        title: "Guesswork decisions",
+        problem: "Pricing and stocking rely on gut feel.",
+        result: "Big-data analytics reveal the real patterns behind sales.",
+        metric: "Smarter decisions",
+      },
+      {
+        title: "Lost customers",
+        problem: "No insight into why shoppers stop coming back.",
+        result: "Behavioral models predict churn and improve retention.",
+        metric: "Higher loyalty",
+      },
+      {
+        title: "Dead stock",
+        problem: "Overstock and stockouts quietly eat your margins.",
+        result: "Demand forecasting optimizes every SKU.",
+        metric: "Leaner inventory",
+      },
+    ],
+  },
+  "erp-solutions": {
+    video: "6bhjeGDkkKo",
+    videoTitle: "One connected business",
+    useCases: [
+      {
+        title: "Data silos",
+        problem: "Departments work off disconnected spreadsheets.",
+        result: "A unified ERP gives everyone one source of truth.",
+        metric: "One platform",
+      },
+      {
+        title: "Slow reporting",
+        problem: "Month-end reports take days to compile by hand.",
+        result: "Live dashboards deliver the answers instantly.",
+        metric: "Real-time insight",
+      },
+      {
+        title: "Manual errors",
+        problem: "Repetitive manual entry causes costly mistakes.",
+        result: "Automated workflows cut both errors and effort.",
+        metric: "Fewer errors",
+      },
+    ],
+  },
+};
+
 export function getSolution(slug) {
   return solutions.find((s) => s.slug === slug);
+}
+
+export function getSolutionMedia(slug) {
+  return solutionMedia[slug];
 }

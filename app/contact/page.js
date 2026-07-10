@@ -1,5 +1,6 @@
 import PageHeader from "@/components/PageHeader";
 import ContactForm from "@/components/ContactForm";
+import Reveal from "@/components/Reveal";
 import { site } from "@/data/site";
 
 export const metadata = {
@@ -21,7 +22,7 @@ export default function ContactPage() {
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-2">
           {/* Form */}
-          <div className="rounded-3xl border border-gray-100 bg-white p-8 shadow-sm">
+          <Reveal variant="left" className="gradient-border rounded-3xl border border-gray-100 bg-white p-8 shadow-sm">
             <h2 className="text-2xl font-bold text-gray-900">Send Us a Message</h2>
             <p className="mt-2 text-sm text-gray-600">
               Fill out the form and our team will get back to you.
@@ -29,10 +30,10 @@ export default function ContactPage() {
             <div className="mt-6">
               <ContactForm />
             </div>
-          </div>
+          </Reveal>
 
           {/* Map & location */}
-          <div className="flex flex-col gap-6">
+          <Reveal variant="right" delay={100} className="flex flex-col gap-6">
             <div className="overflow-hidden rounded-3xl border border-gray-100 shadow-sm">
               <iframe
                 title="SMS Services location"
@@ -76,7 +77,7 @@ export default function ContactPage() {
                 Get Directions <span aria-hidden>→</span>
               </a>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
     </>

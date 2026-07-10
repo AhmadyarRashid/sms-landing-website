@@ -19,6 +19,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   // Close the mobile menu whenever the route changes.
   useEffect(() => {
@@ -26,23 +27,42 @@ export default function Navbar() {
     setServicesOpen(false);
   }, [pathname]);
 
+  // Toggle a denser, more opaque bar once the user scrolls.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const isActive = (href) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/90 backdrop-blur">
+    <header
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "border-b border-gray-200/70 bg-white/80 shadow-[0_8px_30px_-16px_rgba(16,185,129,0.35)] backdrop-blur-xl"
+          : "border-b border-transparent bg-white/40 backdrop-blur-md"
+      }`}
+    >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-3">
-          <Image
-            src={site.logo}
-            alt={site.name}
-            width={44}
-            height={44}
-            className="h-11 w-auto"
-            priority
-          />
+        <Link href="/" className="group flex items-center gap-3">
+          <span className="relative flex items-center">
+            <span className="absolute -inset-1.5 rounded-full bg-brand/15 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-100" />
+            <Image
+              src={site.logo}
+              alt={site.name}
+              width={44}
+              height={44}
+              className="relative h-11 w-auto"
+              priority
+            />
+          </span>
           <span className="hidden flex-col leading-tight sm:flex">
-            <span className="text-base font-bold text-gray-900">SMS SERVICES</span>
+            <span className="text-base font-bold tracking-tight text-gray-900">
+              SMS SERVICES
+            </span>
             <span className="text-[11px] text-gray-500">{site.tagline}</span>
           </span>
         </Link>
@@ -54,14 +74,18 @@ export default function Navbar() {
               <div key={link.href} className="group relative">
                 <Link
                   href={link.href}
-                  className={`flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                  className={`relative flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors after:absolute after:inset-x-3 after:-bottom-0.5 after:h-0.5 after:origin-left after:scale-x-0 after:rounded-full after:bg-gradient-to-r after:from-brand after:to-accent-2 after:transition-transform after:duration-300 hover:after:scale-x-100 ${
                     isActive(link.href)
-                      ? "text-brand"
+                      ? "text-brand after:scale-x-100"
                       : "text-gray-700 hover:text-brand"
                   }`}
                 >
                   {link.label}
-                  <svg className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+                  <svg
+                    className="h-3 w-3 transition-transform duration-300 group-hover:rotate-180"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
                     <path
                       fillRule="evenodd"
                       d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
@@ -69,25 +93,28 @@ export default function Navbar() {
                     />
                   </svg>
                 </Link>
-                <div className="invisible absolute left-0 top-full w-72 translate-y-1 rounded-xl border border-gray-100 bg-white p-2 opacity-0 shadow-xl transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-                  {solutions.map((s) => (
-                    <Link
-                      key={s.slug}
-                      href={`/solutions/${s.slug}`}
-                      className="block rounded-lg px-3 py-2 text-sm text-gray-700 hover:bg-brand-light hover:text-brand-dark"
-                    >
-                      {s.short}
-                    </Link>
-                  ))}
+                <div className="invisible absolute left-1/2 top-full w-[30rem] -translate-x-1/2 translate-y-2 pt-2 opacity-0 transition-all duration-300 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                  <div className="gradient-border grid grid-cols-2 gap-1 rounded-2xl border border-gray-100 bg-white p-2 shadow-2xl">
+                    {solutions.map((s) => (
+                      <Link
+                        key={s.slug}
+                        href={`/solutions/${s.slug}`}
+                        className="group/item flex items-center gap-2 rounded-xl px-3 py-2.5 text-sm text-gray-700 transition-colors hover:bg-brand/10 hover:text-brand-dark"
+                      >
+                        <span className="flex h-2 w-2 shrink-0 rounded-full bg-gradient-to-br from-brand to-accent-2 transition-transform group-hover/item:scale-150" />
+                        {s.short}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
             ) : (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                className={`relative rounded-md px-3 py-2 text-sm font-medium transition-colors after:absolute after:inset-x-3 after:-bottom-0.5 after:h-0.5 after:origin-left after:scale-x-0 after:rounded-full after:bg-gradient-to-r after:from-brand after:to-accent-2 after:transition-transform after:duration-300 hover:after:scale-x-100 ${
                   isActive(link.href)
-                    ? "text-brand"
+                    ? "text-brand after:scale-x-100"
                     : "text-gray-700 hover:text-brand"
                 }`}
               >
@@ -97,10 +124,12 @@ export default function Navbar() {
           )}
           <Link
             href="/contact"
-            className="ml-2 inline-flex items-center gap-1 rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-dark"
+            className="btn-shine ml-2 inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-brand to-accent px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-brand/25 transition-all duration-300 hover:shadow-xl hover:shadow-brand/40"
           >
             Contact Us
-            <span aria-hidden>→</span>
+            <span aria-hidden className="transition-transform group-hover:translate-x-1">
+              →
+            </span>
           </Link>
         </div>
 
@@ -124,7 +153,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="border-t border-gray-100 bg-white lg:hidden">
+        <div className="border-t border-gray-100 bg-white/95 backdrop-blur-xl lg:hidden">
           <div className="space-y-1 px-4 py-3">
             {navLinks.map((link) => (
               <div key={link.href}>
@@ -142,7 +171,7 @@ export default function Navbar() {
                       type="button"
                       aria-label="Toggle services"
                       onClick={() => setServicesOpen((v) => !v)}
-                      className="px-3 py-2 text-gray-500"
+                      className="px-3 py-2 text-lg text-gray-500"
                     >
                       {servicesOpen ? "−" : "+"}
                     </button>
@@ -165,7 +194,7 @@ export default function Navbar() {
             ))}
             <Link
               href="/contact"
-              className="mt-2 block rounded-lg bg-brand px-4 py-2 text-center text-sm font-semibold text-white"
+              className="mt-2 block rounded-xl bg-gradient-to-r from-brand to-accent px-4 py-2.5 text-center text-sm font-semibold text-white shadow-lg shadow-brand/25"
             >
               Contact Us →
             </Link>
