@@ -18,7 +18,52 @@ const nextConfig = {
 
   // Long-cache the immutable, hashed static assets.
   async headers() {
+    // Content Security Policy — allowlist ONLY what this site legitimately uses
+    // (self-hosted assets/fonts, YouTube embeds + thumbnails). Everything else is
+    // denied, which blocks the classes of injection seen in the wild against this
+    // domain: `<script src="data:...">` loaders (no `data:` in script-src),
+    // third-party trackers like mc.yandex.ru (host not allowlisted), and the
+    // blockchain `eth_call` fetches used by EtherHiding malware (connect-src 'self').
+    // NOTE: 'unsafe-inline' is required for Next.js's inline hydration scripts.
+    // A server-level attacker could still strip this header — it is defense in
+    // depth, NOT a substitute for securing the hosting account.
+    const csp = [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline'",
+      "style-src 'self' 'unsafe-inline'",
+      "img-src 'self' data: blob: https://img.youtube.com https://i.ytimg.com",
+      "font-src 'self'",
+      "connect-src 'self'",
+      "frame-src https://www.youtube.com https://www.youtube-nocookie.com",
+      "media-src 'self'",
+      "object-src 'none'",
+      "base-uri 'self'",
+      "form-action 'self'",
+      "frame-ancestors 'self'",
+      "upgrade-insecure-requests",
+    ].join("; ");
+
+    const securityHeaders = [
+      { key: "Content-Security-Policy", value: csp },
+      { key: "X-Content-Type-Options", value: "nosniff" },
+      { key: "X-Frame-Options", value: "SAMEORIGIN" },
+      { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+      {
+        key: "Permissions-Policy",
+        value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
+      },
+      {
+        key: "Strict-Transport-Security",
+        value: "max-age=63072000; includeSubDomains; preload",
+      },
+    ];
+
     return [
+      {
+        // Apply the security headers to every response.
+        source: "/:path*",
+        headers: securityHeaders,
+      },
       {
         source: "/images/:all*",
         headers: [

@@ -261,7 +261,7 @@ export default function HomePage() {
       <Transformation />
 
       {/* 4. Delivering Intelligent Infrastructure — spotlight bento */}
-      <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 py-32 sm:px-6 lg:px-8 lg:py-44">
         <Reveal className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-brand">
             One partner, end to end
@@ -297,54 +297,6 @@ export default function HomePage() {
               </SpotlightCard>
             </Reveal>
           ))}
-        </div>
-      </section>
-
-      {/* 5. Digitalization cornerstone */}
-      <section className="relative overflow-hidden bg-brand-light/40">
-        <Aurora grid={false} />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-24 sm:px-6 lg:grid-cols-2 lg:px-8">
-          <Reveal variant="left" className="relative flex justify-center">
-            <div className="relative w-full max-w-md">
-              <div
-                aria-hidden
-                className="absolute -inset-4 -z-10 rounded-[2rem] bg-brand/15 blur-3xl"
-              />
-              <div className="group relative overflow-hidden rounded-3xl shadow-xl ring-1 ring-black/5">
-                <Image
-                  src="/images/g5.jpg"
-                  alt="SMS Services leadership discussing digital transformation on-site"
-                  width={800}
-                  height={450}
-                  className="h-56 w-full object-cover transition-transform duration-700 group-hover:scale-105 sm:h-72"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/30 to-transparent" />
-              </div>
-              {/* Floating caption chip */}
-              <div className="absolute -bottom-4 -right-3 hidden rounded-xl border border-gray-100 bg-white/90 px-4 py-2 shadow-lg backdrop-blur animate-float sm:block">
-                <p className="text-[10px] font-medium text-gray-400">SMS Services</p>
-                <p className="text-sm font-bold text-brand">Digital transformation</p>
-              </div>
-            </div>
-          </Reveal>
-          <Reveal variant="right">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Digitalization is the{" "}
-              <span className="text-gradient">cornerstone</span> of every successful
-              business.
-            </h2>
-            <p className="mt-5 text-gray-600">
-              We help organizations reimagine how they operate — combining automation,
-              data, and connected technology to unlock efficiency, resilience, and
-              growth across every department.
-            </p>
-            <Link
-              href="/about"
-              className="btn-shine mt-8 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand to-accent px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand/25 transition-all hover:gap-3"
-            >
-              Learn More <span aria-hidden>→</span>
-            </Link>
-          </Reveal>
         </div>
       </section>
 
