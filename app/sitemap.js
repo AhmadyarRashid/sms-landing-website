@@ -14,6 +14,8 @@ export default function sitemap() {
     { path: "/gallery", priority: 0.5, changeFrequency: "monthly" },
     { path: "/video", priority: 0.5, changeFrequency: "monthly" },
     { path: "/contact", priority: 0.7, changeFrequency: "yearly" },
+    { path: "/privacy-policy", priority: 0.3, changeFrequency: "yearly" },
+    { path: "/terms-of-service", priority: 0.3, changeFrequency: "yearly" },
   ];
 
   const now = new Date();

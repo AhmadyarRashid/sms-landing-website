@@ -112,7 +112,17 @@ export default function Footer() {
       <div className="relative border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-6 text-xs text-gray-500 sm:flex-row sm:px-6 lg:px-8">
           <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
-          <p>A member of the Pathfinder Group.</p>
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+            <Link href="/privacy-policy" className="transition-colors hover:text-accent-2">
+              Privacy Policy
+            </Link>
+            <span aria-hidden className="text-gray-600">•</span>
+            <Link href="/terms-of-service" className="transition-colors hover:text-accent-2">
+              Terms of Service
+            </Link>
+            <span aria-hidden className="text-gray-600">•</span>
+            <p>A member of the Pathfinder Group.</p>
+          </div>
         </div>
       </div>
     </footer>

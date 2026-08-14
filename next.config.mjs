@@ -27,9 +27,19 @@ const nextConfig = {
     // NOTE: 'unsafe-inline' is required for Next.js's inline hydration scripts.
     // A server-level attacker could still strip this header — it is defense in
     // depth, NOT a substitute for securing the hosting account.
+    // In development, Next.js's hot-reload / React Refresh runtime uses eval(),
+    // which requires 'unsafe-eval'. Without it the dev bundle throws under this
+    // CSP and the page never hydrates (content stays hidden behind scroll
+    // animations). Production is built ahead of time and needs no eval, so we
+    // keep it strict there.
+    const isDev = process.env.NODE_ENV !== "production";
+    const scriptSrc = isDev
+      ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
+      : "script-src 'self' 'unsafe-inline'";
+
     const csp = [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline'",
+      scriptSrc,
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob: https://img.youtube.com https://i.ytimg.com",
       "font-src 'self'",
