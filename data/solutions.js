@@ -159,8 +159,8 @@ export const solutions = [
   },
   {
     slug: "retail-intelligence",
-    title: "Retail Intelligence and Customer Insights",
-    short: "Retail Intelligence",
+    title: "Business Performance & Predictive Analytics",
+    short: "Business Performance & Analytics",
     tagline:
       "Transforming retail with data — smarter insights and stronger customer connections through advanced analytics and AI.",
     heroImage: "/images/retail-intelligence.webp",
